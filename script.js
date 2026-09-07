@@ -1,269 +1,289 @@
 /* =========================
-KARINA BIRTHDAY WEBSITE
+   KARINA BIRTHDAY WEBSITE
 ========================= */
 
 /* =========================
-PAGE NAVIGATION
+   PAGE NAVIGATION
 ========================= */
 
 const pages = [
-document.getElementById(“page1”),
-document.getElementById(“page2”),
-document.getElementById(“page3”)
+    document.getElementById("page1"),
+    document.getElementById("page2"),
+    document.getElementById("page3")
 ];
 
 let currentPage = 0;
 
-/* Go to next page */
-
 function nextPage() {
+    if (currentPage < pages.length - 1) {
+        currentPage++;
 
-if (currentPage < pages.length - 1) {
-    currentPage++;
-    pages[currentPage].scrollIntoView({
+        pages[currentPage].scrollIntoView({
+            behavior: "smooth"
+        });
+    }
+}
+
+function restart() {
+    currentPage = 0;
+
+    window.scrollTo({
+        top: 0,
         behavior: "smooth"
     });
 }
 
-}
-
-/* Restart website */
-
-function restart() {
-
-currentPage = 0;
-window.scrollTo({
-    top: 0,
-    behavior: "smooth"
-});
-
-}
 
 /* =========================
-MUSIC
+   MUSIC
 ========================= */
 
-const music = document.getElementById(“music”);
-const musicBtn = document.getElementById(“musicBtn”);
+const music = document.getElementById("music");
+const musicBtn = document.getElementById("musicBtn");
 
 let musicPlaying = false;
 
+
 /* Try autoplay */
 
-window.addEventListener(“load”, () => {
+window.addEventListener("load", () => {
 
-music.volume = 0.45;
-music.play()
-    .then(() => {
-        musicPlaying = true;
-        musicBtn.textContent = "🔊";
-    })
-    .catch(() => {
-        /*
-        Mobile browsers often block autoplay.
-        Music will start after the first user interaction.
-        */
-        musicPlaying = false;
-        musicBtn.textContent = "🎵";
-    });
+    music.volume = 0.45;
 
-});
-
-/* Music button */
-
-musicBtn.addEventListener(“click”, () => {
-
-if (musicPlaying) {
-    music.pause();
-    musicPlaying = false;
-    musicBtn.textContent = "🎵";
-} else {
-    music.play();
-    musicPlaying = true;
-    musicBtn.textContent = "🔊";
-}
-
-});
-
-/* Start music after first interaction if autoplay was blocked */
-
-document.addEventListener(“click”, () => {
-
-if (!musicPlaying) {
     music.play()
         .then(() => {
             musicPlaying = true;
             musicBtn.textContent = "🔊";
         })
-        .catch(() => {});
+        .catch(() => {
+            musicPlaying = false;
+            musicBtn.textContent = "🎵";
+        });
+
+});
+
+
+/* Music button */
+
+musicBtn.addEventListener("click", () => {
+
+    if (musicPlaying) {
+
+        music.pause();
+        musicPlaying = false;
+        musicBtn.textContent = "🎵";
+
+    } else {
+
+        music.play()
+            .then(() => {
+                musicPlaying = true;
+                musicBtn.textContent = "🔊";
+            })
+            .catch(() => {
+                musicPlaying = false;
+                musicBtn.textContent = "🎵";
+            });
+
+    }
+
+});
+
+
+/* Start music after first interaction */
+
+document.addEventListener("click", () => {
+
+    if (!musicPlaying) {
+
+        music.play()
+            .then(() => {
+                musicPlaying = true;
+                musicBtn.textContent = "🔊";
+            })
+            .catch(() => {});
+
+    }
 
 }, { once: true });
 
+
 /* =========================
-PHOTO LIGHTBOX
+   PHOTO LIGHTBOX
 ========================= */
 
-const photos = document.querySelectorAll(”.photo img”);
+const photos = document.querySelectorAll(".photo img");
 
-const lightbox = document.getElementById(“lightbox”);
+const lightbox = document.getElementById("lightbox");
 
 const lightboxImage =
-document.getElementById(“lightboxImage”);
+    document.getElementById("lightboxImage");
 
 let currentPhoto = 0;
+
 
 /* Open photo */
 
 photos.forEach((photo, index) => {
 
-photo.addEventListener("click", () => {
-    currentPhoto = index;
-    openLightbox();
-});
+    photo.addEventListener("click", () => {
+
+        currentPhoto = index;
+        openLightbox();
+
+    });
 
 });
+
 
 function openLightbox() {
 
-lightboxImage.src =
-    photos[currentPhoto].src;
-lightboxImage.alt =
-    photos[currentPhoto].alt;
-lightbox.classList.add("active");
-document.body.style.overflow = "hidden";
+    lightboxImage.src = photos[currentPhoto].src;
+    lightboxImage.alt = photos[currentPhoto].alt;
+
+    lightbox.classList.add("active");
+
+    document.body.style.overflow = "hidden";
 
 }
+
 
 /* Close photo */
 
 function closeLightbox() {
 
-lightbox.classList.remove("active");
-document.body.style.overflow = "";
+    lightbox.classList.remove("active");
+
+    document.body.style.overflow = "";
 
 }
+
 
 /* Next photo */
 
 function nextPhoto() {
 
-currentPhoto++;
-if (currentPhoto >= photos.length) {
-    currentPhoto = 0;
-}
-lightboxImage.src =
-    photos[currentPhoto].src;
-lightboxImage.alt =
-    photos[currentPhoto].alt;
+    currentPhoto++;
+
+    if (currentPhoto >= photos.length) {
+        currentPhoto = 0;
+    }
+
+    lightboxImage.src = photos[currentPhoto].src;
+    lightboxImage.alt = photos[currentPhoto].alt;
 
 }
+
 
 /* Previous photo */
 
 function previousPhoto() {
 
-currentPhoto--;
-if (currentPhoto < 0) {
-    currentPhoto = photos.length - 1;
-}
-lightboxImage.src =
-    photos[currentPhoto].src;
-lightboxImage.alt =
-    photos[currentPhoto].alt;
+    currentPhoto--;
+
+    if (currentPhoto < 0) {
+        currentPhoto = photos.length - 1;
+    }
+
+    lightboxImage.src = photos[currentPhoto].src;
+    lightboxImage.alt = photos[currentPhoto].alt;
 
 }
+
 
 /* Close when clicking outside image */
 
-lightbox.addEventListener(“click”, (event) => {
+lightbox.addEventListener("click", (event) => {
 
-if (event.target === lightbox) {
-    closeLightbox();
-}
+    if (event.target === lightbox) {
+        closeLightbox();
+    }
 
 });
 
+
 /* =========================
-KEYBOARD CONTROLS
+   KEYBOARD CONTROLS
 ========================= */
 
-document.addEventListener(“keydown”, (event) => {
+document.addEventListener("keydown", (event) => {
 
-if (!lightbox.classList.contains("active")) {
-    return;
-}
-if (event.key === "Escape") {
-    closeLightbox();
-}
-if (event.key === "ArrowRight") {
-    nextPhoto();
-}
-if (event.key === "ArrowLeft") {
-    previousPhoto();
-}
+    if (!lightbox.classList.contains("active")) {
+        return;
+    }
+
+    if (event.key === "Escape") {
+        closeLightbox();
+    }
+
+    if (event.key === "ArrowRight") {
+        nextPhoto();
+    }
+
+    if (event.key === "ArrowLeft") {
+        previousPhoto();
+    }
 
 });
 
+
 /* =========================
-MOBILE SWIPE
+   MOBILE SWIPE
 ========================= */
 
 let touchStartX = 0;
-
 let touchEndX = 0;
 
-lightbox.addEventListener(“touchstart”, (event) => {
 
-touchStartX =
-    event.changedTouches[0].screenX;
+lightbox.addEventListener("touchstart", (event) => {
+
+    touchStartX =
+        event.changedTouches[0].screenX;
+
+});
+
+
+lightbox.addEventListener("touchend", (event) => {
+
+    touchEndX =
+        event.changedTouches[0].screenX;
+
+    handleSwipe();
 
 });
 
-lightbox.addEventListener(“touchend”, (event) => {
-
-touchEndX =
-    event.changedTouches[0].screenX;
-handleSwipe();
-
-});
 
 function handleSwipe() {
 
-const difference =
-    touchStartX - touchEndX;
-if (Math.abs(difference) < 50) {
-    return;
-}
-if (difference > 0) {
-    nextPhoto();
-} else {
-    previousPhoto();
-}
+    const difference =
+        touchStartX - touchEndX;
+
+    if (Math.abs(difference) < 50) {
+        return;
+    }
+
+    if (difference > 0) {
+        nextPhoto();
+    } else {
+        previousPhoto();
+    }
 
 }
+
 
 /* =========================
-ESCAPE LIGHTBOX ON BACK
-========================= */
-
-window.addEventListener(“popstate”, () => {
-
-if (lightbox.classList.contains("active")) {
-    closeLightbox();
-}
-
-});
-
-/* =========================
-PREVENT BROKEN IMAGES
+   PREVENT BROKEN IMAGES
 ========================= */
 
 photos.forEach((photo) => {
 
-photo.addEventListener("error", () => {
-    photo.style.display = "none";
-    photo.parentElement.style.background =
-        "linear-gradient(135deg, #1b1018, #090609)";
-});
+    photo.addEventListener("error", () => {
+
+        photo.style.display = "none";
+
+        photo.parentElement.style.background =
+            "linear-gradient(135deg, #1b1018, #090609)";
+
+    });
 
 });
