@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="uz">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Karina ❤️</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<!-- MUSIC -->
+<audio id="music" loop>
+    <source src="assets/song.mp3" type="audio/mpeg">
+</audio>
+<!-- MUSIC BUTTON -->
+<button id="musicBtn" class="music-btn" aria-label="Musiqani yoqish">
+    🎵
+</button>
+<!-- PAGE 1 -->
+<section class="page intro" id="page1">
+    <div class="particles"></div>
+    <div class="content">
+        <p class="small-text">
+            Bugun sen uchun...
+        </p>
+        <h1>
+            Karina,<br>
+            nima gap? ❤️
+        </h1>
+        <p class="subtitle">
+            Kichkina surprise tayyorladim...
+        </p>
+        <button class="arrow-btn" onclick="nextPage()">
+            →
+        </button>
+    </div>
+</section>
+<!-- PAGE 2 -->
+<section class="page birthday" id="page2">
+    <div class="content">
+        <p class="small-text">
+            Bugun oddiy kun emas...
+        </p>
+        <h2>
+            17 YOSH<br>
+            MUBORAK BO‘LSIN,<br>
+            KARINA! ❤️
+        </h2>
+        <p class="message">
+            Bugun mening dunyoyimdagi
+            eng chiroyli insonlardan
+            birining kuni.
+        </p>
+        <button class="next-btn" onclick="nextPage()">
+            Keyingi →
+        </button>
+    </div>
+</section>
+<!-- PAGE 3 -->
+<section class="page gallery-page" id="page3">
+    <div class="gallery-container">
+        <p class="small-text">
+            Ba'zi insonlar hayotingga kiradi...
+        </p>
+        <h2>
+            Mening DunyoYim ❤️
+        </h2>
+        <p class="message">
+            Sen bor joy —
+            mening eng sevimli joyim.
+        </p>
+        <!-- PHOTO GALLERY -->
+        <div class="gallery">
+            <div class="photo">
+                <img src="assets/photo01.jpg"
+                     alt="Karina bilan xotira 1">
+                <p>Bu kunni eslaysanmi? ❤️</p>
+            </div>
+            <div class="photo">
+                <img src="assets/photo02.jpg"
+                     alt="Karina bilan xotira 2">
+                <p>Shu tabassuming...</p>
+            </div>
+            <div class="photo">
+                <img src="assets/photo03.jpg"
+                     alt="Karina bilan xotira 3">
+                <p>Sen bilan o'tgan lahzalar.</p>
+            </div>
+            <div class="photo">
+                <img src="assets/photo04.jpg"
+                     alt="Karina bilan xotira 4">
+                <p>Oddiy kun. Chiroyli xotira.</p>
+            </div>
+            <div class="photo">
+                <img src="assets/photo05.jpg"
+                     alt="Karina bilan xotira 5">
+                <p>Men uchun juda qadrli.</p>
+            </div>
+            <div class="photo">
+                <img src="assets/photo06.jpg"
+                     alt="Karina bilan xotira 6">
+                <p>Baxt ba'zida shunchaki sen.</p>
+            </div>
+            <div class="photo">
+                <img src="assets/photo07.jpg"
+                     alt="Karina bilan xotira 7">
+                <p>Yana bir xotira.</p>
+            </div>
+            <div class="photo">
+                <img src="assets/photo08.jpg"
+                     alt="Karina bilan xotira 8">
+                <p>Biz. ❤️</p>
+            </div>
+            <div class="photo">
+                <img src="assets/photo09.jpg"
+                     alt="Karina bilan xotira 9">
+                <p>Eng chiroyli kunlar hali oldinda.</p>
+            </div>
+            <div class="photo">
+                <img src="assets/photo10.jpg"
+                     alt="Karina bilan xotira 10">
+                <p>Mening DunyoYim.</p>
+            </div>
+        </div>
+        <!-- FINAL MESSAGE -->
+        <div class="final-message">
+            <p>Karina...</p>
+            <h2>
+                17 yoshing muborak bo‘lsin. ❤️
+            </h2>
+            <p>
+                Hayotingdagi har bir yangi yil
+                avvalgisidan ham chiroyli bo‘lsin.
+            </p>
+            <p>
+                Doim kulib yur.
+            </p>
+            <p>
+                Va bilib qo‘y...
+            </p>
+            <p>
+                Sen men uchun juda qadrlisan.
+            </p>
+            <h2>
+                Happy 17, Karina ❤️
+            </h2>
+            <h3>
+                Mening DunyoYim.
+            </h3>
+            <button class="restart-btn" onclick="restart()">
+                ↻ Boshidan ko‘rish
+            </button>
+            <p class="footer">
+                Made with ❤️ just for you
+            </p>
+        </div>
+    </div>
+</section>
+<!-- LIGHTBOX -->
+<div id="lightbox" class="lightbox">
+    <button class="close-btn" onclick="closeLightbox()">
+        ×
+    </button>
+    <button class="prev-btn" onclick="previousPhoto()">
+        ‹
+    </button>
+    <img id="lightboxImage" src="" alt="">
+    <button class="next-photo-btn" onclick="nextPhoto()">
+        ›
+    </button>
+</div>
+<script src="script.js"></script>
+</body>
+</html>
